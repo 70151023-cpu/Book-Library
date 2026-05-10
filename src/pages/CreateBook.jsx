@@ -1,0 +1,46 @@
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import BookForm from "../components/BookForm";
+import { createBook } from "../firebase/bookService";
+
+export default function CreateBook() {
+  const [loading, setLoading] = useState(false);
+  const [error,   setError]   = useState("");
+  const navigate = useNavigate();
+
+  async function handleSubmit(data) {
+    setLoading(true);
+    setError("");
+    try {
+      const docRef = await createBook(data);
+      // After saving, go straight to the new book's detail page
+      navigate(`/books/${docRef.id}`, {
+        state: { message: "Book added successfully!" },
+      });
+    } catch (err) {
+      console.error(err);
+      setError("Failed to save. Check your Firebase configuration and try again.");
+      setLoading(false);
+    }
+  }
+
+  return (
+    <main className="container page">
+
+      <div className="page-header">
+        <div className="page-header-text">
+          <h1>Add New Book</h1>
+          <p>Fill in the details below to add a book to your library.</p>
+        </div>
+        <Link to="/books" className="btn btn-outline">← Back to Library</Link>
+      </div>
+
+      {error && <div className="alert alert-error">{error}</div>}
+
+      <div className="form-card">
+        <BookForm onSubmit={handleSubmit} loading={loading} />
+      </div>
+
+    </main>
+  );
+}
