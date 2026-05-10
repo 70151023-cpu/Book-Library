@@ -2,11 +2,6 @@
 Web Engineering Assignment 03
 University of Lahore | BSCS | Spring 2026
 
-🔗 Links
-
-Live URL: [Add your live URL here]
-GitHub: [Add your GitHub URL here]
-
 
 📖 About
 BookShelf is a Single Page Application (SPA) built with React and Firebase Firestore.
@@ -17,25 +12,6 @@ TechnologyPurposeReact 18Frontend UIReact Router DOM v6SPA RoutingFirebase Fires
 
 🗺️ Routes
 RoutePageDescription/HomeLanding page/booksAll BooksView all books/books/newCreate BookAdd a new book/books/:idBook DetailView single book/books/:id/editEdit BookEdit a book
-
-🚀 How to Run Locally
-
-Clone the repository
-
-git clone https://github.com/YOUR_USERNAME/book-library.git
-
-Install dependencies
-
-npm install
-
-Add your Firebase config in src/firebase/config.js
-Start the app
-
-npm run dev
-
-Open in browser
-
-http://localhost:5173
 
 ✅ Features
 
