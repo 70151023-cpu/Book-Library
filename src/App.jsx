@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 
 // Auth pages
 import Login          from "./pages/auth/Login";
-import SignUp         from "./pages/auth/SignUp";
+import SignUp         from "./pages/auth/SignUp.jsx";
 import ResetPassword  from "./pages/auth/ResetPassword";
 
 // Dashboard pages
