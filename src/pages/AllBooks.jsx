@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getAllBooks, deleteBook } from "../firebase/bookService";
+import { useAuth } from "../context/AuthContext";
 
 function ConfirmModal({ book, onConfirm, onCancel, loading }) {
   return (
@@ -15,7 +16,7 @@ function ConfirmModal({ book, onConfirm, onCancel, loading }) {
         <div className="modal-actions">
           <button className="btn btn-outline" onClick={onCancel}  disabled={loading}>Cancel</button>
           <button className="btn btn-danger"  onClick={onConfirm} disabled={loading}>
-            {loading ? "Deleting…" : "Delete"}
+            {loading ? "Deleting..." : "Delete"}
           </button>
         </div>
       </div>
@@ -24,6 +25,7 @@ function ConfirmModal({ book, onConfirm, onCancel, loading }) {
 }
 
 export default function AllBooks() {
+  const { currentUser, userData } = useAuth();
   const [books,    setBooks]    = useState([]);
   const [loading,  setLoading]  = useState(true);
   const [search,   setSearch]   = useState("");
@@ -38,7 +40,7 @@ export default function AllBooks() {
   async function fetchBooks() {
     setLoading(true);
     try {
-      const data = await getAllBooks();
+      const data = await getAllBooks(userData?.role, currentUser?.uid);
       setBooks(data);
     } catch (err) {
       console.error(err);
@@ -87,7 +89,7 @@ export default function AllBooks() {
       {message && (
         <div className={`alert ${message.includes("Failed") || message.includes("failed") ? "alert-error" : "alert-success"}`}>
           {message}
-          <button className="btn btn-ghost btn-sm" style={{ marginLeft: "auto" }} onClick={() => setMessage("")}>✕</button>
+          <button className="btn btn-ghost btn-sm" style={{ marginLeft: "auto" }} onClick={() => setMessage("")}>X</button>
         </div>
       )}
 
@@ -99,7 +101,7 @@ export default function AllBooks() {
           </svg>
           <input
             type="text"
-            placeholder="Search by title, author, genre…"
+            placeholder="Search by title, author, genre..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
