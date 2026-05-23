@@ -3,12 +3,13 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID",
+  apiKey: "AIzaSyBjiPUro0Si3xX4bS_00M6BPHudI40KPjM",
+  authDomain: "book-library-4004.firebaseapp.com",
+  projectId: "book-library-4004",
+  storageBucket: "book-library-4004.firebasestorage.app",
+  messagingSenderId: "322530109861",
+  appId: "1:322530109861:web:2eb9e5c6b6806f1140a04c",
+  measurementId: "G-8G269DHTJF"
 };
 
 const app = initializeApp(firebaseConfig);
