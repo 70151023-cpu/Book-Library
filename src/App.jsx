@@ -13,11 +13,11 @@ import UserDashboard  from "./pages/user/UserDashboard";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 
 // Book pages (from Assignment 03)
-import Home         from "./pages/home";
-import AllBooks     from "./pages/allBooks";
-import CreateBook   from "./pages/createBook";
-import BookDetail   from "./pages/bookDetail";
-import EditBook     from "./pages/editBook";
+import Home         from "./pages/Home";
+import AllBooks     from "./pages/AllBooks";
+import CreateBook   from "./pages/CreateBook";
+import BookDetail   from "./pages/BookDetail";
+import EditBook     from "./pages/EditBook";
 
 // Chat
 import Chat from "./pages/chat/Chat";
