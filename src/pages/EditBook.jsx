@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import BookForm from "../components/BookForm";
+import BookForm from "../components/bookForm";
 import { getBook, updateBook } from "../firebase/bookService";
 
 export default function EditBook() {
-  const { id }   = useParams();   // ← reads the :id from the URL
-  const navigate  = useNavigate();
+  const { id }  = useParams();
+  const navigate = useNavigate();
 
   const [book,    setBook]    = useState(null);
   const [loading, setLoading] = useState(true);
   const [saving,  setSaving]  = useState(false);
   const [error,   setError]   = useState("");
 
-  // Fetch the existing book so we can pre-fill the form
   useEffect(() => {
     async function fetchBook() {
       setLoading(true);
@@ -54,7 +53,7 @@ export default function EditBook() {
   if (error && !book) return (
     <main className="container page">
       <div className="alert alert-error">{error}</div>
-      <Link to="/books" className="btn btn-outline">← Back to Library</Link>
+      <Link to="/books" className="btn btn-outline">← Back</Link>
     </main>
   );
 
@@ -64,18 +63,13 @@ export default function EditBook() {
       <div className="page-header">
         <div className="page-header-text">
           <h1>Edit Book</h1>
-          <p>
-            Updating:{" "}
-            <em style={{ color: "var(--accent)" }}>{book?.title}</em>
-          </p>
         </div>
-        <Link to={`/books/${id}`} className="btn btn-outline">← View Book</Link>
+        <Link to={`/books/${id}`} className="btn btn-outline">← Back</Link>
       </div>
 
       {error && <div className="alert alert-error">{error}</div>}
 
       <div className="form-card">
-        {/* initialData pre-fills every field with the existing book data */}
         <BookForm
           initialData={{
             title:       book.title       || "",

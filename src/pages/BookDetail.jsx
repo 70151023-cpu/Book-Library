@@ -3,9 +3,9 @@ import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import { getBook, deleteBook } from "../firebase/bookService";
 
 export default function BookDetail() {
-  const { id }   = useParams();   // ← reads the :id from the URL
-  const navigate  = useNavigate();
-  const location  = useLocation();
+  const { id }  = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const [book,     setBook]     = useState(null);
   const [loading,  setLoading]  = useState(true);
@@ -13,7 +13,6 @@ export default function BookDetail() {
   const [confirm,  setConfirm]  = useState(false);
   const [error,    setError]    = useState("");
 
-  // Success message passed from CreateBook after saving
   const successMsg = location.state?.message || "";
 
   useEffect(() => {
@@ -25,7 +24,7 @@ export default function BookDetail() {
         setBook(data);
       } catch (err) {
         console.error(err);
-        setError("Failed to load book. Check Firebase config.");
+        setError("Failed to load book.");
       } finally {
         setLoading(false);
       }
@@ -57,7 +56,7 @@ export default function BookDetail() {
   if (error) return (
     <main className="container page">
       <div className="alert alert-error">{error}</div>
-      <Link to="/books" className="btn btn-outline">← Back to Library</Link>
+      <Link to="/books" className="btn btn-outline">← Back</Link>
     </main>
   );
 
@@ -119,7 +118,6 @@ export default function BookDetail() {
         </div>
       </div>
 
-      {/* Delete confirmation modal */}
       {confirm && (
         <div className="modal-overlay">
           <div className="modal">
@@ -130,10 +128,8 @@ export default function BookDetail() {
               This cannot be undone.
             </p>
             <div className="modal-actions">
-              <button className="btn btn-outline" onClick={() => setConfirm(false)} disabled={deleting}>
-                Cancel
-              </button>
-              <button className="btn btn-danger" onClick={handleDelete} disabled={deleting}>
+              <button className="btn btn-outline" onClick={() => setConfirm(false)} disabled={deleting}>Cancel</button>
+              <button className="btn btn-danger"  onClick={handleDelete}            disabled={deleting}>
                 {deleting ? "Deleting…" : "Delete"}
               </button>
             </div>

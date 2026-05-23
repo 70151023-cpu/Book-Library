@@ -1,19 +1,16 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-
-// ✅ STEP 1: Go to https://console.firebase.google.com
-// ✅ STEP 2: Create a project → Add Web App → copy config below
-// ✅ STEP 3: Enable Firestore → Build → Firestore Database → Start in Test Mode
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBwss4aH6fqogCxn-YMGyXZlcErs2UPTCI",
-    authDomain: "web-engineering-1794.firebaseapp.com",
-    projectId: "web-engineering-1794",
-    storageBucket: "web-engineering-1794.firebasestorage.app",
-    messagingSenderId: "708034063955",
-    appId: "1:708034063955:web:2a7b9d46201db465a520a6",
-    measurementId: "G-05JF5NP7J8"
-  };
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID",
+};
 
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+export const db   = getFirestore(app);
+export const auth = getAuth(app);

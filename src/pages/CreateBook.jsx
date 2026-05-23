@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import BookForm from "../components/BookForm";
+import BookForm from "../components/bookForm";
 import { createBook } from "../firebase/bookService";
 
 export default function CreateBook() {
@@ -13,7 +13,6 @@ export default function CreateBook() {
     setError("");
     try {
       const docRef = await createBook(data);
-      // After saving, go straight to the new book's detail page
       navigate(`/books/${docRef.id}`, {
         state: { message: "Book added successfully!" },
       });
@@ -30,9 +29,8 @@ export default function CreateBook() {
       <div className="page-header">
         <div className="page-header-text">
           <h1>Add New Book</h1>
-          <p>Fill in the details below to add a book to your library.</p>
         </div>
-        <Link to="/books" className="btn btn-outline">← Back to Library</Link>
+        <Link to="/books" className="btn btn-outline">← Back</Link>
       </div>
 
       {error && <div className="alert alert-error">{error}</div>}

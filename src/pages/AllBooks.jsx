@@ -87,17 +87,10 @@ export default function AllBooks() {
       {message && (
         <div className={`alert ${message.includes("Failed") || message.includes("failed") ? "alert-error" : "alert-success"}`}>
           {message}
-          <button
-            className="btn btn-ghost btn-sm"
-            style={{ marginLeft: "auto" }}
-            onClick={() => setMessage("")}
-          >
-            ✕
-          </button>
+          <button className="btn btn-ghost btn-sm" style={{ marginLeft: "auto" }} onClick={() => setMessage("")}>✕</button>
         </div>
       )}
 
-      {/* Search bar */}
       {!loading && books.length > 0 && (
         <div className="search-bar" style={{ marginTop: 20 }}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
@@ -113,21 +106,18 @@ export default function AllBooks() {
         </div>
       )}
 
-      {/* Loading spinner */}
       {loading && (
         <div className="spinner-wrap"><div className="spinner" /></div>
       )}
 
-      {/* Empty library */}
       {!loading && books.length === 0 && (
         <div className="empty-state">
-          <h2>Your library is empty</h2>
-          <p>Start building your collection by adding your first book.</p>
-          <Link to="/books/new" className="btn btn-primary">Add First Book</Link>
+          <h2>No books yet</h2>
+          <p>Add your first book to get started.</p>
+          <Link to="/books/new" className="btn btn-primary">Add Book</Link>
         </div>
       )}
 
-      {/* No search results */}
       {!loading && books.length > 0 && filtered.length === 0 && (
         <div className="empty-state">
           <h2>No results found</h2>
@@ -135,7 +125,6 @@ export default function AllBooks() {
         </div>
       )}
 
-      {/* Book cards */}
       {!loading && filtered.length > 0 && (
         <div className="card-grid">
           {filtered.map((book) => (
@@ -149,7 +138,6 @@ export default function AllBooks() {
                 </div>
               )}
               {book.description && <p className="card-desc">{book.description}</p>}
-
               <div className="card-actions">
                 <Link to={`/books/${book.id}`}      className="btn btn-outline btn-sm">View</Link>
                 <Link to={`/books/${book.id}/edit`} className="btn btn-ghost   btn-sm">Edit</Link>
@@ -166,7 +154,6 @@ export default function AllBooks() {
         </div>
       )}
 
-      {/* Delete confirmation modal */}
       {toDelete && (
         <ConfirmModal
           book={toDelete}
